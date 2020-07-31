@@ -2,6 +2,43 @@
 
 <% if logged_in? %>
   <h1>You are Logged In, <%= current_user.username %></h1>
+  <p id="notice"><%= notice %></p>
+
+<% if @events.any?%>
+  <% @events.each do |event| %>
+      <tr>
+        <td><%= event.event_name %></td>
+        <td><%= event.description %></td>
+        <td><%= event.date %></td>
+        <td><%= link_to 'Show', event %></td>
+        <td><%= link_to 'Edit', edit_event_path(event) %></td>
+        <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+<% end %>
+<%= link_to 'New Event', new_event_path %>
+<p>
+  <strong>Name:</strong>
+  <%= current_user.name %>
+</p>
+
+<p>
+  <strong>Username:</strong>
+  <%= current_user.username %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= current_user.email %>
+</p>
+
+<p>
+  <strong>Password:</strong>
+  <%= current_user.password %>
+</p>
+
+<%= link_to 'Back', users_path %>
+
 <%end%>
 
 <%= button_to "Log Out", logout_path , method: :delete%>

@@ -19,6 +19,8 @@ class SessionsController < ApplicationController
   end
 
   def welcome
+    @events = Event.all
+    @user = User.find_by(username: params[:username])
   end
 
   def destroy
