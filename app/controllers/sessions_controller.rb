@@ -1,7 +1,8 @@
 class SessionsController < ApplicationController
-  skip_before_action :authorized, only: [:new, :create, :welcome]
+  #skip_before_action :authorized, only: [:new, :create, :welcome]
 
   def new
+   #@session = Session.new
   end
 
   def create
@@ -18,5 +19,10 @@ class SessionsController < ApplicationController
   end
 
   def welcome
+  end
+
+  def destroy
+   session[:user_id] = nil
+   redirect_to root_path, notice: 'Logged Out!'
   end
 end
