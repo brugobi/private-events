@@ -4,19 +4,6 @@
   <h1>You are Logged In, <%= current_user.username %></h1>
   <p id="notice"><%= notice %></p>
 
-<% if @events.any?%>
-  <% @events.each do |event| %>
-      <tr>
-        <td><%= event.event_name %></td>
-        <td><%= event.description %></td>
-        <td><%= event.date %></td>
-        <td><%= link_to 'Show', event %></td>
-        <td><%= link_to 'Edit', edit_event_path(event) %></td>
-        <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-<% end %>
-<%= link_to 'New Event', new_event_path %>
 <p>
   <strong>Name:</strong>
   <%= current_user.name %>
@@ -42,3 +29,30 @@
 <%end%>
 
 <%= button_to "Log Out", logout_path , method: :delete%>
+
+<br>
+<br>
+
+<h2>Events available</h2>
+<% if @events.any?%>
+  <% @events.each do |event| %>
+      <br>
+      <tr>
+        <td><%= event.event_name %></td>
+        <td><%= event.description %></td>
+        <td><%= event.date %></td>
+        <td><%= link_to 'Show', event %></td>
+        <td><%= link_to 'Edit', edit_event_path(event) %></td>
+        <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+<% end %>
+<br>
+<br>
+<%= link_to 'New Event', new_event_path %> <br>
+
+<h3>My Events</h3>
+
+<% current_user.events.each do |e| %>
+  <%= e.description%>
+<% end %>

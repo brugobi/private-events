@@ -10,7 +10,7 @@ class EventsController < ApplicationController
   # GET /events/1
   # GET /events/1.json
   def show
-    @event = Event.find(params[:id])
+    set_event
     @events = Event.all
   end
 
@@ -27,10 +27,10 @@ class EventsController < ApplicationController
   # POST /events.json
   def create
     @event = current_user.events.build(event_params)
-
+    @event.creator_id = current_user.id
     respond_to do |format|
       if @event.save
-        format.html { redirect_to @event, notice: 'Event was successfully created.' }
+        format.html { redirect_to '/welcome', notice: 'Event was successfully created.' }
         format.json { render :show, status: :created, location: @event }
       else
         format.html { render :new }
@@ -65,12 +65,12 @@ class EventsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_event
-      @event = Event.find(params[:id])
-    end
+  def set_event
+    @event = Event.find(params[:id])
+  end
 
     # Only allow a list of trusted parameters through.
-    def event_params
-      params.require(:event).permit(:event_name, :description, :date)
-    end
+  def event_params
+    params.require(:event).permit(:event_name, :description, :date)
+  end
 end
