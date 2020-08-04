@@ -1,4 +1,4 @@
-class AttendeesController < ApplicationController
+class AttendancesController < ApplicationController
   before_action :set_attendee, only: [:show, :edit, :update, :destroy]
 
   # GET /attendees
@@ -14,7 +14,7 @@ class AttendeesController < ApplicationController
 
   # GET /attendees/new
   def new
-    @attendee = Attendee.new
+    @attendance = Attendance.new
   end
 
   # GET /attendees/1/edit
