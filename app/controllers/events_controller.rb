@@ -18,9 +18,9 @@ class EventsController < ApplicationController
 
   def attend
     user = current_user
-    user.attendance.create(attendances_event_id: @user.id)
+    user.attendance.create(attendee_id: @user.id)
     redirect_to @event
-  end  
+  end
 
   # GET /events/new
   def new

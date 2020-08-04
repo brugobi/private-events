@@ -4,7 +4,7 @@ class AttendancesController < ApplicationController
   # GET /attendees
   # GET /attendees.json
   def index
-    @attendees = Attendee.all
+    @attendance = Attendance.all
   end
 
   # GET /attendees/1
@@ -24,15 +24,16 @@ class AttendancesController < ApplicationController
   # POST /attendees
   # POST /attendees.json
   def create
-    @attendee = Attendee.new(attendee_params)
+    event = params[:attended_event_id]
+    @attendance = current_user.attendances.build(attended_event_id: event)
 
     respond_to do |format|
-      if @attendee.save
-        format.html { redirect_to @attendee, notice: 'Attendee was successfully created.' }
-        format.json { render :show, status: :created, location: @attendee }
+      if @attendance.save
+        format.html { redirect_to @attendance, notice: 'Attendee was successfully created.' }
+        format.json { render :show, status: :created, location: @attendance }
       else
         format.html { render :new }
-        format.json { render json: @attendee.errors, status: :unprocessable_entity }
+        format.json { render json: @attendance.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -41,12 +42,12 @@ class AttendancesController < ApplicationController
   # PATCH/PUT /attendees/1.json
   def update
     respond_to do |format|
-      if @attendee.update(attendee_params)
-        format.html { redirect_to @attendee, notice: 'Attendee was successfully updated.' }
-        format.json { render :show, status: :ok, location: @attendee }
+      if @attendance.update(attendance_params)
+        format.html { redirect_to @attendance, notice: 'Attendee was successfully updated.' }
+        format.json { render :show, status: :ok, location: @attendance }
       else
         format.html { render :edit }
-        format.json { render json: @attendee.errors, status: :unprocessable_entity }
+        format.json { render json: @attendance.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -54,21 +55,21 @@ class AttendancesController < ApplicationController
   # DELETE /attendees/1
   # DELETE /attendees/1.json
   def destroy
-    @attendee.destroy
+    @attendance.destroy
     respond_to do |format|
-      format.html { redirect_to attendees_url, notice: 'Attendee was successfully destroyed.' }
+      format.html { redirect_to attendance_url, notice: 'Attendee was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_attendee
-      @attendee = Attendee.find(params[:id])
-    end
+  def set_attendance
+    @attendee = Attendee.find(params[:id])
+  end
 
     # Only allow a list of trusted parameters through.
-    def attendee_params
-      params.fetch(:attendee, {})
-    end
+  def attendance_params
+    params.fetch(:attendance, {})
+  end
 end
