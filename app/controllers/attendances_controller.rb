@@ -1,5 +1,5 @@
 class AttendancesController < ApplicationController
-  before_action :set_attendee, only: [:show, :edit, :update, :destroy]
+  before_action :set_attendee, only: [:show, :edit, :update, :destroy, :create]
   # before_action :find_user
 
   # GET /attendees
