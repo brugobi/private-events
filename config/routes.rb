@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
-  resources :attendees
+  resources :attendances
   resources :events
   #resources :users, only: [:new, :create]
    get 'login', to: 'sessions#new'
    post 'login', to: 'sessions#create'
+   get 'attend/:id', to: 'events#attend', as: 'attendy'
+   get 'create_attendance', to: 'attendances#create'
    get 'welcome', to: 'sessions#welcome'
    get 'authorized', to: 'sessions#page_requires_login'
    get 'attend', to: 'sessions#attend'

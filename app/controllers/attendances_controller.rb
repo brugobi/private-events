@@ -1,5 +1,6 @@
 class AttendancesController < ApplicationController
   before_action :set_attendee, only: [:show, :edit, :update, :destroy]
+  # before_action :find_user
 
   # GET /attendees
   # GET /attendees.json
@@ -32,7 +33,7 @@ class AttendancesController < ApplicationController
         format.html { redirect_to @attendance, notice: 'Attendee was successfully created.' }
         format.json { render :show, status: :created, location: @attendance }
       else
-        format.html { render :new }
+        format.html { render :show }
         format.json { render json: @attendance.errors, status: :unprocessable_entity }
       end
     end
