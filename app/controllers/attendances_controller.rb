@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class AttendancesController < ApplicationController
-  before_action :set_attendee, only: [:show, :edit, :update, :destroy, :create]
+  before_action :set_attendee, only: %i[show edit update destroy create]
   # before_action :find_user
 
   # GET /attendees
@@ -10,8 +12,7 @@ class AttendancesController < ApplicationController
 
   # GET /attendees/1
   # GET /attendees/1.json
-  def show
-  end
+  def show; end
 
   # GET /attendees/new
   def new
@@ -19,8 +20,7 @@ class AttendancesController < ApplicationController
   end
 
   # GET /attendees/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /attendees
   # POST /attendees.json
@@ -64,12 +64,13 @@ class AttendancesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+
+  # Use callbacks to share common setup or constraints between actions.
   def set_attendance
     @attendee = Attendee.find(params[:id])
   end
 
-    # Only allow a list of trusted parameters through.
+  # Only allow a list of trusted parameters through.
   def attendance_params
     params.fetch(:attendance, {})
   end

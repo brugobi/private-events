@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class UsersController < ApplicationController
-   before_action :set_user, only: [:show, :edit, :update, :destroy]
-   before_action :authorized, only: [:edit, :show, :destroy, :update]
+  before_action :set_user, only: %i[show edit update destroy]
+  before_action :authorized, only: %i[edit show destroy update]
 
   # GET /users
   # GET /users.json
@@ -21,8 +23,7 @@ class UsersController < ApplicationController
   end
 
   # GET /users/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /users
   # POST /users.json

@@ -1,12 +1,14 @@
+# frozen_string_literal: true
+
 class EventsController < ApplicationController
-  before_action :set_event, only: [:show, :edit, :update, :destroy]
+  before_action :set_event, only: %i[show edit update destroy]
 
   # GET /events
   # GET /events.json
   def index
     @events = Event.all
-    #@upcoming_events = current_user.upcoming_events
-    #@prev_events = current_user.previous_events
+    # @upcoming_events = current_user.upcoming_events
+    # @prev_events = current_user.previous_events
     @prev_event = Event.previous_events
     @fut_event = Event.upcoming_events
   end
@@ -21,8 +23,8 @@ class EventsController < ApplicationController
   def attend
     set_event
     user = current_user
-      user.attendances.build(attended_event_id: @event.id).save
-      flash[:notice] = "User #{user.username} added to attend #{@event.description}"
+    user.attendances.build(attended_event_id: @event.id).save
+    flash[:notice] = "User #{user.username} added to attend #{@event.description}"
     redirect_to @event
   end
 
@@ -32,8 +34,7 @@ class EventsController < ApplicationController
   end
 
   # GET /events/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /events
   # POST /events.json
@@ -76,12 +77,13 @@ class EventsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+
+  # Use callbacks to share common setup or constraints between actions.
   def set_event
     @event = Event.find(params[:id])
   end
 
-    # Only allow a list of trusted parameters through.
+  # Only allow a list of trusted parameters through.
   def event_params
     params.require(:event).permit(:event_name, :description, :date)
   end
