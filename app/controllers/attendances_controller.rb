@@ -1,6 +1,3 @@
-# frozen_string_literal: true
-# This class is made to control the behavior of the attendance table.
-
 class AttendancesController < ApplicationController
   before_action :set_attendee, only: %i[show edit update destroy create]
   # before_action :find_user

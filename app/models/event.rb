@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class Event < ApplicationRecord
   validates :event_name, presence: true, uniqueness: true
   validates :description, presence: true
