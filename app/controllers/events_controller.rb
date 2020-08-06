@@ -1,4 +1,6 @@
+# frozen_string_literal: true
 # class to create a new table attendances
+
 class EventsController < ApplicationController
   before_action :set_event, only: %i[show edit update destroy]
 

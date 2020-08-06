@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 # This class works to control al the methods related to the app.
 
 class ApplicationController < ActionController::Base
@@ -10,7 +11,7 @@ class ApplicationController < ActionController::Base
   end
 
   def logged_in?
-    !!session[:user_id]
+    !session[:user_id].nil?
   end
 
   def authorized
