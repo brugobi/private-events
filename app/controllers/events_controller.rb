@@ -7,6 +7,8 @@ class EventsController < ApplicationController
     @events = Event.all
     #@upcoming_events = current_user.upcoming_events
     #@prev_events = current_user.previous_events
+    @prev_event = Event.previous_events
+    @fut_event = Event.upcoming_events
   end
 
   # GET /events/1
