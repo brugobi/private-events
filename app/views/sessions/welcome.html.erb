@@ -32,40 +32,6 @@
 
 <%= link_to 'Events Availabe', events_path %> <br>
 
-<h3>My Events</h3>
-
-<% current_user.events.each do |event| %>
-  <%= event.description%>
-  <td><%= link_to 'Edit', edit_event_path(event) %></td>
-  <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  <br>
-<% end %>
-
-<h3>Events Attend</h3>
-
-<h4> Past Events</h4>
-  <% @prev_events.each do |prev|%>
-    <%= prev.description%>
-    <br>
-  <% end %>
-<h4>Future Events</h4>
-  <% @next_events.each do |fut|%>
-    <%= fut.description%>
-    <br>
-  <% end %>
-
-<h3>All Attend Events</h3>
-<% if @events.any?%>
-  <% @events.each do |i|%>
-    <% current_user.attended_events.ids.each do |id|%>
-      <% if i.id == id%>
-        <%= i.description%>
-        <br>
-      <% end %>
-    <% end %>
-  <% end %>
-<% end %>
-
 <div class="container-fluid">
   <div class="row border d-flex align-items-center border-info">
     <div class="col-3 text-center">
