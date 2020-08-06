@@ -21,6 +21,8 @@ class SessionsController < ApplicationController
   def welcome
     @events = Event.all
     @user = User.find_by(username: params[:username])
+    @next_events = current_user.attended_events.upcoming_events
+    @prev_events = current_user.attended_events.previous_events
   end
 
   def destroy

@@ -20,7 +20,7 @@ class EventsController < ApplicationController
     set_event
     user = current_user
     # if !user.already_attend?(@event)
-      user.attended_events.build(id: @event.id).save
+      user.attendances.build(attended_event_id: @event.id).save
       flash[:notice] = "User #{user.username} added to attend #{@event.description}"
     # else
      # flash[:notice] = "User #{user.username} already attending to this event!"
