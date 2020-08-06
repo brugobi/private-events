@@ -1,4 +1,4 @@
-# frozen_string_literal: true
+# This class works to control al the methods related to the app.
 
 class ApplicationController < ActionController::Base
   # before_action :authorized

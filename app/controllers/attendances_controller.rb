@@ -1,5 +1,4 @@
-# frozen_string_literal: true
-
+# This class is made to control the behavior of the attendance table.
 class AttendancesController < ApplicationController
   before_action :set_attendee, only: %i[show edit update destroy create]
   # before_action :find_user
@@ -25,9 +24,7 @@ class AttendancesController < ApplicationController
   # POST /attendees
   # POST /attendees.json
   def create
-    event = params[:attended_event_id]
     @attendance = current_user.attendances.build(attended_event_id: event)
-
     respond_to do |format|
       if @attendance.save
         format.html { redirect_to @attendance, notice: 'Attendee was successfully created.' }

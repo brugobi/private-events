@@ -1,4 +1,3 @@
-# frozen_string_literal: true
-
+# class to create a new table attendances
 module SessionsHelper
 end

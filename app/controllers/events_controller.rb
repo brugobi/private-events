@@ -1,5 +1,4 @@
-# frozen_string_literal: true
-
+# class to create a new table attendances
 class EventsController < ApplicationController
   before_action :set_event, only: %i[show edit update destroy]
 
@@ -40,7 +39,6 @@ class EventsController < ApplicationController
   # POST /events.json
   def create
     @event = current_user.events.build(event_params)
-    @event.creator_id = current_user.id
     respond_to do |format|
       if @event.save
         format.html { redirect_to '/welcome', notice: 'Event was successfully created.' }

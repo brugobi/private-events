@@ -1,5 +1,4 @@
-# frozen_string_literal: true
-
+# class to create a new table attendances
 class SessionsController < ApplicationController
   before_action :authorized, only: [:welcome]
 
