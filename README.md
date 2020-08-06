@@ -57,7 +57,7 @@ $ rails server
 
 ## Live Demo
 
-[Live Demo Link](https://members-only-bruna-emi.herokuapp.com)
+[Live Demo Link](https://private-events-bru-emi.herokuapp.com)
 
 
 ## Authors
