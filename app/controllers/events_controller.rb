@@ -1,12 +1,11 @@
 class EventsController < ApplicationController
   before_action :set_event, only: %i[show edit update destroy]
+  before_action :authorized, only: [:show, :edit, :update, :destroy]
 
   # GET /events
   # GET /events.json
   def index
     @events = Event.all
-    # @upcoming_events = current_user.upcoming_events
-    # @prev_events = current_user.previous_events
     @prev_event = Event.previous_events
     @fut_event = Event.upcoming_events
   end
