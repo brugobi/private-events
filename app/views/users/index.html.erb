@@ -1,0 +1,43 @@
+<p id="notice"><%= notice %></p>
+
+<div class="container-fluid text-center d-flex align-items-center justify-content-center">
+  <h1 class="text-uppercase text-success">Welcome to Private Events</h1>
+</div>
+<div class="container-fluid border border-info text-center d-flex align-items-center justify-content-center">
+  <h3 class="text-uppercase text-info">Members</h3>
+</div>
+<div class="container-fluid">
+  <div class="row d-flex align-items-center justify-content-center">
+    <div class="col-6 d-flex align-items-center justify-content-center">
+      <%= link_to 'Sign In', login_path, class:'text-uppercase text-light border border-light pl-3 pr-3 pt-1 pb-1 bg-info' %>
+    </div>
+    <div class="col-6 d-flex align-items-center justify-content-center">
+      <%= link_to 'Sign Up', new_user_path, class:'text-uppercase text-light border border-light pl-3 pr-3 pt-1 pb-1 bg-info' %>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid">
+  <div class="row border d-flex align-items-center border-info">
+    <div class="col-6 text-center">
+      <h2 class="text-uppercase">Name</h2>
+    </div>
+    <div class="col-6 text-center">
+      <h2 class="text-uppercase">Username</h2>
+    </div>
+  </div>
+  <div class="row border border-info d-flex">
+    <div class="col-6 text-center d-flex flex-column">
+      <% @users.each do |u| %>
+        <p><%= u.name%></p>
+      <% end %>
+    </div>
+    <div class="col-6 text-center d-flex flex-column">
+      <% @users.each do |i| %>
+        <p><%= i.username %></p>
+      <% end %> 
+    </div>
+  </div>
+</div>
+
+

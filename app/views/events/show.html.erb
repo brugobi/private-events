@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<%if !@event.creator.nil?%>
+<p>
+  <strong>Author:</strong>
+  <%= @event.creator.name%>
+</p>
+<% else %>
+  <strong>Your event doesn't have a creator</strong>
+<%end%>
+<p>
+  <strong>Description</strong>
+  <%= @event.description%>
+</p>
+
+<p>
+  <strong>Description</strong>
+  <%= current_user.name%>
+</p>
+
+<td><%= link_to 'Attend', attendy_path(@event), class:"button"%></td>
+<%= link_to 'Back', '/welcome' %>
+
+  
+  <tr><h1>List of attended</h1>
+    <% @event.attendees.each do |user| %>
+        <div>
+          <strong><%= user.username %> </strong>       
+        </div>
+    <% end %>
+  <tr>
+  
+

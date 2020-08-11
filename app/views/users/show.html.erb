@@ -1,0 +1,92 @@
+<p id="notice"><%= notice %></p>
+
+<% if @events.any?%>
+  <% @events.each do |event| %>
+      <tr>
+        <td><%= event.event_name %></td>
+        <td><%= event.description %></td>
+        <td><%= event.date %></td>
+        <td><%= link_to 'Show', event %></td>
+        <td><%= link_to 'Edit', edit_event_path(event) %></td>
+        <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+<% end %>
+<p>
+  <strong>Name:</strong>
+  <%= @user.name %>
+</p>
+
+<p>
+  <strong>Username:</strong>
+  <%= @user.username %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @user.email %>
+</p>
+
+<p>
+  <strong>Password:</strong>
+  <%= @user.password %>
+</p>
+
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', users_path %>
+
+<%= link_to 'Events Availabe', events_path %> <br>
+
+<div class="container-fluid">
+  <div class="row border d-flex align-items-center border-info">
+    <div class="col-3 text-center">
+      <h2 class="text-uppercase">Events created by me</h2>
+    </div>
+    <div class="col-3 text-center">
+      <h2 class="text-uppercase">My list of events</h2>
+    </div>
+    <div class="col-3 text-center">
+      <h2 class="text-uppercase">My previous events</h2>
+    </div>
+    <div class="col-3 text-center">
+      <h2 class="text-uppercase">My upcoming events</h2>
+    </div>
+  </div>
+  <div class="row border border-info d-flex">
+    <div class="col-3 text-center d-flex flex-column">
+      <% current_user.events.each do |event| %>
+        <%= event.description%>
+        <td><%= link_to 'Edit', edit_event_path(event) %></td>
+        <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <br>
+      <% end %>
+    </div>
+
+    <div class="col-3 text-center d-flex flex-column">
+      <% if @events.any?%>
+        <% @events.each do |i|%>
+          <% current_user.attended_events.ids.each do |id|%>
+            <% if i.id == id%>
+            <%= i.description%>
+            <br>
+            <% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+
+    <div class="col-3 text-center d-flex flex-column">
+      <% @prev_events.each do |prev|%>
+        <%= prev.description%>
+        <br>
+      <% end %>
+    </div>
+
+    <div class="col-3 text-center d-flex flex-column">
+      <% @next_events.each do |fut|%>
+        <%= fut.description%>
+        <br>
+      <% end %>
+    </div>
+  </div>
+</div>
